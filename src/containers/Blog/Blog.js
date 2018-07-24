@@ -11,16 +11,21 @@ class Blog extends Component {
         posts: [],
         selectedPostId: null
     }
+
     async componentDidMount() {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-        const posts = response.data.slice(0, 8);
-        const updatedPosts = posts.map(post => {
-            return {
-                ...post,
-                author: 'Max'
-            }
-        })
-        this.setState({posts: updatedPosts});
+        try {
+            const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+            const posts = response.data.slice(0, 8);
+            const updatedPosts = posts.map(post => {
+                return {
+                    ...post,
+                    author: 'Max'
+                }
+            })
+            this.setState({posts: updatedPosts});
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     postSelectedHander = id => {
