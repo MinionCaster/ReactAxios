@@ -11,6 +11,7 @@ class Posts extends Component {
 
     async componentDidMount() {
         try {
+            console.log(this.props);
             const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
             const posts = response.data.slice(0, 8);
             const updatedPosts = posts.map(post => {
